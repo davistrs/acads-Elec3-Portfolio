@@ -156,7 +156,26 @@ export const ProjectGallery = component$(() => {
                                 Project Documentation
                             </h3>
 
-                            <div class="w-full h-[70vh] rounded-xl overflow-hidden border border-slate-700 bg-slate-900 shadow-2xl relative group">
+                            {/* Mobile: Show button to open PDF */}
+                            <div class="md:hidden">
+                                <a
+                                    href={selectedProject.value.pdf}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="flex items-center justify-center gap-3 w-full px-6 py-4 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white rounded-xl transition-all shadow-lg shadow-red-500/20 font-bold"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Open PDF Document
+                                </a>
+                                <p class="text-gray-400 text-sm text-center mt-3">
+                                    Tap to view the PDF in a new tab
+                                </p>
+                            </div>
+
+                            {/* Desktop: Show embedded PDF viewer */}
+                            <div class="hidden md:block w-full h-[70vh] rounded-xl overflow-hidden border border-slate-700 bg-slate-900 shadow-2xl relative group">
                                 <div class="absolute inset-0 flex items-center justify-center bg-slate-900 z-0">
                                     <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
                                 </div>

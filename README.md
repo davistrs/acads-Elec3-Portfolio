@@ -1,161 +1,300 @@
-# Cloud Computing Portfolio 🌐
+# ELEC3 Cloud Computing Portfolio
 
-A modern portfolio showcasing cloud computing and DevOps projects built with Qwik, featuring interactive project cards, journey reflections, and comprehensive documentation.
+A modern, high-performance portfolio website showcasing cloud computing and DevOps projects built with **Qwik**, **TypeScript**, and **Tailwind CSS**. Deployed on **GitHub Pages** with full static site generation (SSG).
 
-## 📋 Features
+🔗 **Live Site**: [https://mark-siazon.github.io/acads-Elec3-Portfolio/](https://mark-siazon.github.io/acads-Elec3-Portfolio/)
 
-- **Interactive Project Gallery**: Browse through 7 cloud computing assignments with visual indicators for PDF docs, live demos, and local projects
-- **Journey Map**: A reflective timeline of learning experiences from AWS to Kubernetes
-- **Modern UI**: Built with Qwik and Tailwind CSS v4, featuring glassmorphism, animations, and responsive design
-- **GitHub Pages Deployment**: Automated CI/CD via GitHub Actions
+## 📋 Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Performance Optimizations](#performance-optimizations)
+- [Accessibility](#accessibility)
+- [Deployment](#deployment)
+- [Scripts](#scripts)
+- [License](#license)
+
+## ✨ Features
+
+### 🎨 UI/UX
+- **Premium Design** - Glassmorphism, gradients, and micro-animations
+- **Responsive Layout** - Mobile-first design with adaptive breakpoints
+- **Dark Theme** - Sleek dark mode with cyan/blue accents
+- **Interactive Cards** - Hover effects, glowing borders, and smooth transitions
+- **Modal System** - Full-screen project details with keyboard navigation
+- **Mobile-Optimized PDF Viewer** - Button prompt on mobile, embedded viewer on desktop
+
+### ⌨️ Keyboard Navigation
+- **ESC** - Close modal
+- **← →** - Navigate between projects
+- **Tab** - Focus navigation with visible rings
+- **Keyboard Hint Tooltip** - Auto-appears after 2 seconds (desktop only)
+
+### 🚀 Performance
+- **Lazy Loading** - Images load only when visible
+- **Optimized Images** - 850px width for 2x retina displays (~61 KB savings)
+- **Font Optimization** - Preconnect hints for faster loading
+- **No Render-Blocking** - Async font loading (~250ms savings)
+- **Explicit Dimensions** - Prevents layout shift (CLS improvement)
+- **Optimized Backdrop** - Removed blur for smooth mouse movement
+
+### 📱 Mobile Features
+- **Functional Hamburger Menu** - Smooth slide-down navigation
+- **Stacked Buttons** - Vertical layout on small screens
+- **Responsive Grid** - 1 column (mobile) → 2 (tablet) → 3-4 (desktop)
+- **PDF Prompt** - No auto-download on mobile devices
+- **Touch-Friendly** - Larger tap targets and spacing
+
+### 🎯 SEO & Meta
+- **Open Graph Tags** - Social media preview cards
+- **Twitter Cards** - Optimized sharing on Twitter/X
+- **Sitemap** - Auto-generated XML sitemap
+- **Robots.txt** - Proper crawler directives
+- **Manifest.json** - PWA-ready configuration
+- **Copyright Protection** - Meta tags and footer notice
+
+### ♿ Accessibility
+- **WCAG 2.1 AA Compliant** - Visible focus indicators
+- **Keyboard Navigation** - Full keyboard support
+- **ARIA Labels** - Semantic HTML throughout
+- **Focus-Visible Rings** - Only on keyboard (not mouse)
+- **Screen Reader Friendly** - Proper heading hierarchy
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Qwik](https://qwik.dev/) - Resumable framework for instant-loading web apps
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS framework
-- **Deployment**: GitHub Pages with Static Site Generation
-- **CI/CD**: GitHub Actions
+### Core
+- **[Qwik](https://qwik.builder.io/)** - Resumable framework for instant-loading apps
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Vite](https://vitejs.dev/)** - Next-generation build tool
+
+### Deployment
+- **GitHub Pages** - Static hosting
+- **GitHub Actions** - Automated CI/CD pipeline
+- **Static Adapter** - SSG for optimal performance
+
+### Tools
+- **Sharp** - Image optimization
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
 
 ## 📁 Project Structure
 
 ```
-├── public/               # Static assets (images, PDFs, icons)
-│   ├── card-img/        # Project card images
-│   └── files/           # PDF documentation
+acads-Portfolio/
+├── public/                      # Static assets
+│   ├── card-img/               # Project card images (optimized)
+│   ├── files/                  # PDF documents
+│   ├── logo.svg                # Site logo
+│   ├── manifest.json           # PWA manifest
+│   └── robots.txt              # SEO directives
 ├── src/
-│   ├── components/      # Reusable UI components
-│   │   ├── footer/
-│   │   ├── header/
-│   │   ├── home/        # Project gallery components
-│   │   ├── project-card/
-│   │   ├── project-modal/
-│   │   └── reflection/  # Journey map and intro sections
-│   ├── data/            # Project data and configuration
-│   │   └── projects.tsx # Project definitions
-│   └── routes/          # Page routes
-│       ├── index.tsx    # Home page
-│       └── reflection/  # Reflection page
-└── .github/
-    └── workflows/
-        └── static.yml   # GitHub Pages deployment workflow
+│   ├── components/
+│   │   ├── footer/             # Footer with social links
+│   │   ├── header/             # Navigation with hamburger menu
+│   │   ├── hero/               # Landing hero section
+│   │   ├── home/               # Home page components
+│   │   │   └── project-gallery.tsx  # Project grid & modal
+│   │   ├── project-card/       # Interactive project cards
+│   │   ├── project-modal/      # Modal with keyboard shortcuts
+│   │   ├── reflection/         # Reflection page components
+│   │   └── router-head/        # SEO meta tags
+│   ├── data/
+│   │   └── projects.tsx        # Project data array
+│   ├── routes/
+│   │   ├── index.tsx           # Home page
+│   │   └── reflection/         # Reflections page
+│   ├── utils/
+│   │   └── highlight.ts        # Text highlighting utility
+│   ├── global.css              # Global styles
+│   └── root.tsx                # App root
+├── scripts/
+│   └── optimize-images.js      # Image optimization script
+├── .github/
+│   └── workflows/
+│       └── static.yml          # GitHub Pages deployment
+├── adapters/
+│   └── static/                 # Static adapter config
+├── package.json
+├── vite.config.ts              # Vite configuration
+└── README.md
 ```
-
-## 🎯 Projects Featured
-
-1. **Spring Boot RESTful Web Services** - User Management API with MySQL
-2. **AWS Deployment Guide** - EC2, S3, and RDS integration
-3. **Docker & Containerization** - Two-week learning curriculum
-4. **Docker Image Deployment** - Hands-on containerization lab
-5. **Virtualization vs. Containerization** - Research narrative report
-6. **Kubernetes Home Lab** - Minikube orchestration with WordPress & MySQL
-7. **Terraform Survivor** - IaC-controlled survival game
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js 18.17.0+ or 20.3.0+
-- npm or yarn
+- **Node.js** 18+ and npm
+- Git
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mark-siazon/acads-Elec3-Portfolio.git
+   cd acads-Elec3-Portfolio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:5173/](http://localhost:5173/)
+
+### Development Workflow
+
 ```bash
-# Clone the repository
-git clone https://github.com/mark-siazon/acads-Portfolio.git
-cd acads-Portfolio
-
-# Install dependencies
-npm install
-```
-
-### Development
-
-```bash
-# Start development server with SSR
+# Development server with HMR
 npm run dev
 
-# Or open automatically in browser
-npm start
-```
-
-The dev server will be available at `http://localhost:5173`
-
-### Build
-
-```bash
-# Create production build
+# Build for production
 npm run build
 
-# Preview production build locally
+# Preview production build
 npm run preview
+
+# Optimize images
+npm run optimize:images
+
+# Lint code
+npm run lint
+
+# Format code
+npm run fmt
 ```
 
-## 🌐 Deployment
+## ⚡ Performance Optimizations
 
-This project is configured for automatic deployment to GitHub Pages.
+### Image Optimization
+All project card images are optimized to 850px width (2x for retina):
 
-### Setup GitHub Pages
+```bash
+npm run optimize:images
+```
 
-1. Push your code to GitHub
-2. Go to **Settings** > **Pages**
-3. Under **Build and deployment** > **Source**, select **GitHub Actions**
-4. The workflow will automatically build and deploy on every push to `main`
+**Results:**
+- Project-Ass-1: 16.4 KB → 11.2 KB (31% smaller)
+- Project-Ass-2: 24.1 KB → 15.6 KB (35% smaller)
+- Project-Ass-4: 46.9 KB → 12.4 KB (74% smaller!)
+- **Total savings: ~61 KB**
+
+### Lazy Loading
+Images use `loading="lazy"` and `decoding="async"` for optimal performance:
+```tsx
+<img 
+  src={image} 
+  loading="lazy" 
+  decoding="async" 
+  width="850" 
+  height="478"
+/>
+```
+
+### Font Optimization
+Google Fonts are preconnected and loaded asynchronously:
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+```
+
+## ♿ Accessibility
+
+### Keyboard Navigation
+- **Tab** - Navigate through interactive elements
+- **Enter/Space** - Activate buttons/links
+- **ESC** - Close modal
+- **Arrow Keys** - Navigate projects in modal
+
+### Focus Indicators
+```tsx
+focus-visible:ring-2 
+focus-visible:ring-cyan-400 
+focus-visible:ring-offset-2
+```
+
+### ARIA Labels
+All interactive elements have proper `aria-label` attributes:
+```tsx
+<button aria-label="Toggle menu">...</button>
+<section aria-label="Project Gallery">...</section>
+```
+
+## 🚢 Deployment
+
+### GitHub Pages
+The site is automatically deployed via GitHub Actions on every push to `main`.
+
+**Workflow:** `.github/workflows/static.yml`
+
+```yaml
+- Build with Qwik SSG
+- Upload to GitHub Pages
+- Deploy to https://mark-siazon.github.io/acads-Elec3-Portfolio/
+```
 
 ### Manual Deployment
 
 ```bash
-# Build the static site
+# Build for production
 npm run build
 
-# The output will be in the `dist/` directory
+# The dist/ folder contains the static site
+# Upload dist/acads-Elec3-Portfolio/ to your hosting
 ```
 
-## 🎨 Customization
+### Base Path Configuration
+The site is configured for GitHub Pages subdirectory deployment:
 
-### Adding Projects
-
-Edit `src/data/projects.tsx` to add or modify projects:
-
-```tsx
-{
-  title: 'Your Project',
-  description: 'Short description',
-  tags: ['Tag1', 'Tag2'],
-  pdf: '/files/your-doc.pdf',      // Optional
-  demo: 'https://demo-url.com',    // Optional
-  github: 'https://github.com/...',// Optional
-  local: true,                      // Optional
-  image: '/card-img/your-img.webp',
-  fullDescription: `Detailed description...`
-}
+**vite.config.ts:**
+```ts
+base: '/acads-Elec3-Portfolio/'
 ```
 
-### Updating Reflections
+All asset paths use `import.meta.env.BASE_URL` for proper resolution.
 
-Modify `src/components/reflection/journey-map.tsx` to update the learning journey timeline.
+## � Scripts
 
-## 📝 Scripts
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production (SSG) |
+| `npm run build.client` | Build client only |
+| `npm run build.server` | Build server/SSG only |
+| `npm run preview` | Preview production build |
+| `npm run optimize:images` | Optimize card images with Sharp |
+| `npm run lint` | Lint TypeScript files |
+| `npm run fmt` | Format code with Prettier |
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run fmt` - Format code with Prettier
+## 🎓 Projects Showcased
 
-## 🤝 Contributing
-
-This is a personal portfolio project, but feel free to fork and adapt it for your own use!
+1. **Spring Boot RESTful Web Services** - User Management REST API
+2. **AWS Deployment Guide** - EC2, S3, RDS integration
+3. **Docker & Containerization** - Learning plan and best practices
+4. **Docker Image Deployment** - Node.js containerization lab
+5. **Virtualization vs Containerization** - Research analysis
+6. **Kubernetes Home Lab** - Minikube orchestration
+7. **Terraform Survivor** - IaC-controlled browser game
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is for **educational purposes only**.
 
-## 🙏 Acknowledgments
-
-- **Prof. Nino Narido** - For guidance in cloud computing and orchestration
-- **Qwik Team** - For the amazing framework
-- **Tailwind CSS** - For the utility-first CSS framework
+© 2025 Mark Angelo D. Siazon. All Rights Reserved.
 
 ---
 
-Built with ⚡ by [Mark Angelo Siazon](https://github.com/mark-siazon)
+## 🙏 Acknowledgments
+
+- **IV-ACSAD** - Academic Year 2025-2026
+- **Qwik Team** - For the amazing framework
+- **Tailwind CSS** - For the utility-first approach
+
+---
+
+**Built with ❤️ using Qwik, TypeScript, and Tailwind CSS**
