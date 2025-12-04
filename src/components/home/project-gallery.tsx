@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useVisibleTask$ } from '@builder.io/qwik';
 import ProjectCard from '../project-card/project-card';
 import ProjectModal from '../project-modal/project-modal';
 import { projects } from '../../data/projects';
@@ -7,29 +7,39 @@ export const ProjectGallery = component$(() => {
     const isModalOpen = useSignal(false);
     const selectedProject = useSignal<any>(null);
     const selectedIndex = useSignal(0);
+    const pdfLoadError = useSignal(false);
+    const pdfLoadTimeout = useSignal(false);
 
     const openModal = $((project: any) => {
         const index = projects.findIndex(p => p.title === project.title);
         selectedIndex.value = index;
         selectedProject.value = project;
         isModalOpen.value = true;
+        pdfLoadError.value = false;
+        pdfLoadTimeout.value = false;
     });
 
     const closeModal = $(() => {
         isModalOpen.value = false;
         selectedProject.value = null;
+        pdfLoadError.value = false;
+        pdfLoadTimeout.value = false;
     });
 
     const nextProject = $(() => {
         const newIndex = (selectedIndex.value + 1) % projects.length;
         selectedIndex.value = newIndex;
         selectedProject.value = projects[newIndex];
+        pdfLoadError.value = false;
+        pdfLoadTimeout.value = false;
     });
 
     const prevProject = $(() => {
         const newIndex = (selectedIndex.value - 1 + projects.length) % projects.length;
         selectedIndex.value = newIndex;
         selectedProject.value = projects[newIndex];
+        pdfLoadError.value = false;
+        pdfLoadTimeout.value = false;
     });
 
     return (
@@ -174,21 +184,119 @@ export const ProjectGallery = component$(() => {
                                 </p>
                             </div>
 
-                            {/* Desktop: Show embedded PDF viewer */}
-                            <div class="hidden md:block w-full h-[70vh] rounded-xl overflow-hidden border border-slate-700 bg-slate-900 shadow-2xl relative group">
-                                <div class="absolute inset-0 flex items-center justify-center bg-slate-900 z-0">
-                                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
-                                </div>
+                            {/* Desktop: Show embedded PDF viewer with error handling */}
+                            <div class="hidden md:block w-full rounded-xl overflow-hidden border border-slate-700 bg-slate-900 shadow-2xl">
+                                {!pdfLoadError.value && !pdfLoadTimeout.value ? (
+                                    <>
+                                        {/* PDF Viewer */}
+                                        <div class="relative h-[70vh]">
+                                            <div class="absolute inset-0 flex items-center justify-center bg-slate-900 z-0">
+                                                <div class="text-center">
+                                                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500 mx-auto mb-4"></div>
+                                                    <p class="text-gray-400 text-sm">Loading PDF...</p>
+                                                </div>
+                                            </div>
 
-                                <iframe
-                                    src={selectedProject.value.pdf}
-                                    class="w-full h-full relative z-10"
-                                    title="Project Documentation"
-                                    loading="lazy"
-                                ></iframe>
+                                            <iframe
+                                                id="pdf-iframe"
+                                                src={selectedProject.value.pdf}
+                                                class="w-full h-full relative z-10 bg-white"
+                                                title="Project Documentation"
+                                                loading="lazy"
+                                                onLoad$={() => {
+                                                    // PDF loaded successfully
+                                                    pdfLoadTimeout.value = false;
+                                                }}
+                                                onError$={() => {
+                                                    // PDF failed to load
+                                                    pdfLoadError.value = true;
+                                                }}
+                                            ></iframe>
+                                        </div>
+
+                                        {/* Always visible download option */}
+                                        <div class="p-4 bg-slate-800/50 border-t border-slate-700">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    <p class="text-sm text-gray-400">
+                                                        PDF not loading? Try downloading or check your browser settings.
+                                                    </p>
+                                                </div>
+                                                <a
+                                                    href={selectedProject.value.pdf}
+                                                    download
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    class="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-colors border border-red-500/30 text-sm font-medium"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                    </svg>
+                                                    Download PDF
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    /* Error Fallback UI */
+                                    <div class="h-[70vh] flex flex-col items-center justify-center p-8 text-center bg-slate-900">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-red-400 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <h3 class="text-2xl font-bold text-white mb-3">PDF Viewer Unavailable</h3>
+                                        <p class="text-gray-400 mb-6 max-w-md leading-relaxed">
+                                            Your browser cannot display this PDF inline. This is usually caused by browser extensions, privacy settings, or PDF viewer configuration.
+                                        </p>
+
+                                        {/* Download Button */}
+                                        <a
+                                            href={selectedProject.value.pdf}
+                                            download
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white rounded-xl transition-all shadow-lg shadow-red-500/20 font-bold text-lg mb-8"
+                                        >
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            Download PDF Document
+                                        </a>
+
+                                        {/* Troubleshooting Tips */}
+                                        <div class="max-w-lg bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                                            <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                Common Causes:
+                                            </h4>
+                                            <ul class="text-left text-gray-400 text-sm space-y-2">
+                                                <li class="flex items-start gap-2">
+                                                    <span class="text-red-400 mt-0.5">•</span>
+                                                    <span>Ad blockers or privacy extensions (uBlock, Privacy Badger)</span>
+                                                </li>
+                                                <li class="flex items-start gap-2">
+                                                    <span class="text-red-400 mt-0.5">•</span>
+                                                    <span>Browser PDF settings disabled</span>
+                                                </li>
+                                                <li class="flex items-start gap-2">
+                                                    <span class="text-red-400 mt-0.5">•</span>
+                                                    <span>Try opening in Incognito/Private mode</span>
+                                                </li>
+                                                <li class="flex items-start gap-2">
+                                                    <span class="text-red-400 mt-0.5">•</span>
+                                                    <span>Use a different browser (Chrome, Firefox, Safari)</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    ) : null}
+                    ) : undefined}
                 </div>
             </ProjectModal>
         </>

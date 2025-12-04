@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
+/* Force dark mode - prevent any light mode switching */
 :root {
+    color-scheme: dark only;
     --color-bg-primary: #0f172a;
     --color-bg-secondary: #1e293b;
     --color-text-primary: #f8fafc;
@@ -9,6 +11,12 @@
     --color-accent-glow: rgba(56, 189, 248, 0.5);
 
     --font-sans: 'Outfit', 'Inter', sans-serif;
+}
+
+/* Ensure dark mode regardless of system preference */
+html {
+    color-scheme: dark;
+    background-color: #0f172a;
 }
 
 ::selection {
