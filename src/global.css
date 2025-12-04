@@ -167,3 +167,95 @@ body {
     transform: translateX(-50%) scale(1.2);
     box-shadow: 0 0 40px var(--color-accent);
 }
+
+/* Optimization for low-end devices */
+.low-end .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(30, 41, 59, 0.95);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeInSimple {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.low-end .animate-fade-in {
+    animation-name: fadeInSimple;
+    filter: none;
+}
+
+@keyframes slideInLeftSimple {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.low-end .animate-slide-in-left {
+    animation-name: slideInLeftSimple;
+    filter: none;
+}
+
+@keyframes slideInRightSimple {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.low-end .animate-slide-in-right {
+    animation-name: slideInRightSimple;
+    filter: none;
+}
+
+/* Reduce expensive effects on low-end devices */
+.low-end .journey-line {
+    box-shadow: none;
+}
+
+.low-end .journey-node {
+    box-shadow: 0 0 5px var(--color-accent);
+}
+
+.low-end .journey-node:hover {
+    box-shadow: 0 0 10px var(--color-accent);
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .animate-fade-in,
+    .animate-float,
+    .animate-slide-in-left,
+    .animate-slide-in-right {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        transition: none;
+    }
+}
