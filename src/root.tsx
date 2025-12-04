@@ -23,6 +23,8 @@ export default component$(() => {
           />
         )}
         <RouterHead />
+        {/* Async font loading script */}
+        <script dangerouslySetInnerHTML={"(function(){var l=document.querySelector('link[media=\"print\"]');if(l){l.media='all';}})();"} />
       </head>
       <body lang="en">
         <RouterOutlet />
