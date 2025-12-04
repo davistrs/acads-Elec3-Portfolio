@@ -45,25 +45,30 @@ export const RouterHead = component$(() => {
       </noscript>
 
       {/* Google Analytics 4 */}
-      {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}', {
-                page_path: window.location.pathname,
-                send_page_view: true
-              });
-            `}
-          />
-        </>
-      )}
+      {(() => {
+        const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+        if (!gaId) return null;
+
+        return (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <script
+              dangerouslySetInnerHTML={`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}', {
+                  page_path: window.location.pathname,
+                  send_page_view: true
+                });
+              `}
+            />
+          </>
+        );
+      })()}
 
       {head.meta.map((m) => (
         <meta key={m.key} {...m} />
