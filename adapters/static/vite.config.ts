@@ -12,7 +12,7 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [
       staticAdapter({
-        origin: "https://yoursite.qwik.dev",
+        origin: "https://mark-siazon.github.io/acads-Elec3-Portfolio",
       }),
     ],
   };
