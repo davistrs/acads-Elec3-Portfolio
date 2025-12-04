@@ -5,7 +5,7 @@ export const OutroSection = component$(() => {
         <section class="max-w-5xl mx-auto mt-24 mb-20 text-center scroll-reveal opacity-0 translate-y-8 transition-all duration-700" data-animate="animate-fade-in" aria-label="Industry Readiness">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-12">Ready for the Industry</h2>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {/* Item 1: Cloud Native */}
                 <div class="glass relative p-6 rounded-2xl border border-cyan-500/20 hover:border-cyan-500/50 hover:bg-cyan-500/10 transition-all duration-300 group">
                     {/* Tooltip */}

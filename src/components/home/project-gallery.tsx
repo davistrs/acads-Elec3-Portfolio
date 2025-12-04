@@ -6,8 +6,11 @@ import { projects } from '../../data/projects';
 export const ProjectGallery = component$(() => {
     const isModalOpen = useSignal(false);
     const selectedProject = useSignal<any>(null);
+    const selectedIndex = useSignal(0);
 
     const openModal = $((project: any) => {
+        const index = projects.findIndex(p => p.title === project.title);
+        selectedIndex.value = index;
         selectedProject.value = project;
         isModalOpen.value = true;
     });
@@ -15,6 +18,18 @@ export const ProjectGallery = component$(() => {
     const closeModal = $(() => {
         isModalOpen.value = false;
         selectedProject.value = null;
+    });
+
+    const nextProject = $(() => {
+        const newIndex = (selectedIndex.value + 1) % projects.length;
+        selectedIndex.value = newIndex;
+        selectedProject.value = projects[newIndex];
+    });
+
+    const prevProject = $(() => {
+        const newIndex = (selectedIndex.value - 1 + projects.length) % projects.length;
+        selectedIndex.value = newIndex;
+        selectedProject.value = projects[newIndex];
     });
 
     return (
@@ -41,14 +56,55 @@ export const ProjectGallery = component$(() => {
             <ProjectModal
                 isOpen={isModalOpen.value}
                 onClose$={closeModal}
+                onNext$={nextProject}
+                onPrev$={prevProject}
                 title={selectedProject.value?.title || ''}
             >
-                <div class="space-y-6 text-gray-300">
-                    <p class="whitespace-pre-line leading-relaxed text-lg text-gray-300">
-                        {selectedProject.value?.fullDescription}
-                    </p>
+                <div class="space-y-6">
+                    {/* Formatted Description */}
+                    <div class="prose prose-invert prose-cyan max-w-none">
+                        {selectedProject.value?.fullDescription.split('\n\n').map((section: string, idx: number) => {
+                            // Check if section contains bullet points
+                            if (section.includes('- ')) {
+                                const lines = section.split('\n');
+                                const heading = lines[0].replace(':', '').trim();
+                                const bullets = lines.slice(1).filter(line => line.trim().startsWith('-'));
 
-                    <div class="flex flex-wrap gap-2 pb-4 border-b border-slate-800">
+                                return (
+                                    <div key={idx} class="mb-6">
+                                        {heading && !heading.startsWith('-') && (
+                                            <h4 class="text-lg font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent mb-3 flex items-center gap-2">
+                                                <span class="w-1 h-6 bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full flex-shrink-0"></span>
+                                                {heading}
+                                            </h4>
+                                        )}
+                                        <ul class="space-y-2 ml-4">
+                                            {bullets.map((bullet: string, bidx: number) => (
+                                                <li key={bidx} class="flex items-start gap-3 text-gray-300 leading-relaxed hover:text-gray-200 transition-colors">
+                                                    <span class="text-cyan-400 mt-1.5 flex-shrink-0">
+                                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                    </span>
+                                                    <span class="flex-1">{bullet.replace(/^-\s*/, '')}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                );
+                            } else {
+                                // Regular paragraph
+                                return (
+                                    <p key={idx} class="text-gray-300 leading-relaxed text-base">
+                                        {section.trim()}
+                                    </p>
+                                );
+                            }
+                        })}
+                    </div>
+
+                    {/* Tags */}
+                    <div class="flex flex-wrap gap-2 pb-4 border-t border-slate-800 pt-6">
                         {selectedProject.value?.tags.map((tag: string) => (
                             <span key={tag} class="px-3 py-1 bg-slate-800 text-cyan-300 text-sm rounded-full border border-slate-700 font-medium">
                                 {tag}
@@ -64,30 +120,32 @@ export const ProjectGallery = component$(() => {
                                 </svg>
                                 Source Code
                             </h3>
-                            <a
-                                href={selectedProject.value.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-700 font-medium"
-                            >
-                                View on GitHub
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
-                            {selectedProject.value.demo && (
+                            <div class="flex flex-col sm:flex-row gap-4">
                                 <a
-                                    href={selectedProject.value.demo}
+                                    href={selectedProject.value.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-lg transition-all shadow-lg shadow-green-500/20 font-bold transform ms-4 translate-y-1 hover:-translate-y-0.5"
+                                    class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors border border-slate-700 font-medium"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                    View on GitHub
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                     </svg>
-                                    Play Game
                                 </a>
-                            )}
+                                {selectedProject.value.demo && (
+                                    <a
+                                        href={selectedProject.value.demo}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-lg transition-all shadow-lg shadow-green-500/20 font-bold"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                        </svg>
+                                        Play Game
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     ) : selectedProject.value?.pdf ? (
                         <div class="mt-8 border-t border-slate-800 pt-6">
