@@ -26,7 +26,15 @@ export default component$<ProjectCardProps>(({ title, description, tags, image, 
             <div class="relative h-full bg-slate-900/90 backdrop-blur-xl rounded-2xl border border-slate-800/50 overflow-hidden flex flex-col z-10">
                 <div class="h-52 bg-slate-800 relative overflow-hidden group-hover:h-48 transition-all duration-500">
                     {image ? (
-                        <img src={image} alt={title} width={800} height={400} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img
+                            src={image}
+                            alt={title}
+                            width="850"
+                            height="478"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
                     ) : (
                         <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 group-hover:from-slate-700 group-hover:to-slate-800 transition-colors">
                             <span class="text-6xl filter drop-shadow-[0_0_25px_rgba(34,211,238,0.6)] animate-float">

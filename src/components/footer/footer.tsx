@@ -69,8 +69,9 @@ export default component$(() => {
                 </div>
 
                 <div class="text-gray-400 text-sm">
-                    <p>&copy; 2025 - Mark Angelo D. Siazon | IV-ACSAD (SY.2025-2026)</p>
-                    <p class="mt-2">For educational purposes only.</p>
+                    <p>&copy; 2025 Mark Angelo D. Siazon. All Rights Reserved.</p>
+                    <p class="mt-2">IV-ACSAD (SY.2025-2026) | For educational purposes only.</p>
+                    <p class="mt-2 text-xs text-gray-500">Unauthorized copying or reproduction of this content is prohibited.</p>
                 </div>
             </div>
         </footer>

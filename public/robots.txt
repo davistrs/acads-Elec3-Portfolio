@@ -1,0 +1,5 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+Sitemap: https://mark-siazon.github.io/acads-Elec3-Portfolio/sitemap.xml

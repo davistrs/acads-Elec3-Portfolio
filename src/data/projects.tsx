@@ -7,7 +7,7 @@ export const projects = [
         description: 'A comprehensive User Management REST API with layered architecture, MySQL integration, and Postman testing.',
         tags: ['Java SpringBoot', 'REST API', 'MySQL', 'Postman'],
         pdf: `${BASE_URL}files/Project-Ass-1.pdf`,
-        image: `${BASE_URL}card-img/Project-Ass-1.webp`,
+        image: `${BASE_URL}card-img/Project-Ass-1-opt.webp`,
         fullDescription: `
         Developed a comprehensive User Management REST API using Spring Boot and MySQL.
         The project implements a standard layered architecture (Controller, Service, Repository) to handle CRUD operations for user data.
@@ -23,7 +23,7 @@ export const projects = [
         description: 'A comprehensive guide for setting up a website hosting project using key AWS services like EC2, S3, and RDS.',
         tags: ['AWS', 'EC2', 'S3', 'RDS', 'Cloud Hosting'],
         pdf: `${BASE_URL}files/Project-Ass-2.pdf`,
-        image: `${BASE_URL}card-img/Project-Ass-2.webp`,
+        image: `${BASE_URL}card-img/Project-Ass-2-opt.webp`,
         fullDescription: `
         A step-by-step guide for deploying a simple website on AWS, mirroring real-world cloud practices.
         This project demonstrates the integration of core AWS services to build a scalable and secure hosting environment.
@@ -57,7 +57,7 @@ export const projects = [
         tags: ['Docker', 'Node.js', 'Containerization', 'Docker Compose'],
         github: 'https://github.com/Iron-Mark/Elec3-Docker',
         local: true,
-        image: `${BASE_URL}card-img/Project-LabAct.webp`,
+        image: `${BASE_URL}card-img/Project-LabAct-opt.webp`,
         fullDescription: `
         A hands-on lab activity demonstrating the fundamentals of containerizing a web application.
         The project uses a simple Node.js app to showcase the Docker lifecycle: building images, running containers, and managing services with Docker Compose.
@@ -73,7 +73,7 @@ export const projects = [
         description: 'A comparative analysis of Virtual Machines and Docker containers in Edge Computing environments.',
         tags: ['Research', 'Virtualization', 'Docker', 'Edge Computing'],
         pdf: `${BASE_URL}files/Project-Ass-4.pdf`,
-        image: `${BASE_URL}card-img/Project-Ass-4.webp`,
+        image: `${BASE_URL}card-img/Project-Ass-4-opt.webp`,
         fullDescription: `
         A critical review of the research article "Virtualization vs. Containerization... Focused on the Edge".
         The report evaluates the performance and efficiency of VMs vs. Docker in resource-constrained environments.
@@ -94,7 +94,7 @@ export const projects = [
         description: 'Hands-on container orchestration using Minikube: Deployments, Services, Debugging, and Stateful Apps.',
         tags: ['Kubernetes', 'Minikube', 'MySQL', 'WordPress', 'PVC', 'Secrets'],
         pdf: `${BASE_URL}files/Project-Ass-5.pdf`,
-        image: `${BASE_URL}card-img/Project-Ass-5.webp`,
+        image: `${BASE_URL}card-img/Project-Ass-5-opt.webp`,
         fullDescription: `
         A comprehensive hands-on lab focused on deploying and managing applications with Kubernetes (Minikube).
         The project covers three key practical tutorials demonstrating core orchestration skills.
